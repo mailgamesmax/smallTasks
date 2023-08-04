@@ -28,16 +28,21 @@ namespace oopBankomatas.Models
 
         public Client newClientCreate() 
         {
-            Name = "Skrudz";
-            LastName = "MacDac";
-            PersonalID = 01234567890;
-            ClientID = 03456781;
-            return new Client(); }
+            string name = "Skrudz";
+            string lastName = "MacDac";
+            int personalID = 01234567890;
+            int clientID = 03456781;
+            new Client(name, lastName, personalID, clientID);
+
+            return new Client(); 
+        }
 
         public string Name { get; set; }
         public string LastName { get; set; }
         public int PersonalID { get; set; } // private
         public int ClientID { get; set; } // private?
+
+        public List<Client> allClients { get; set;} = new List<Client>();
 
 
 

@@ -8,5 +8,6 @@ namespace oopBankomatas.Models
 {
     internal class Account
     {
+        public int MyProperty { get; set; }
     }
 }
