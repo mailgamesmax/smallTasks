@@ -1,0 +1,15 @@
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\bin\Debug\net7.0\oopBankomatas.exe
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\bin\Debug\net7.0\oopBankomatas.deps.json
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\bin\Debug\net7.0\oopBankomatas.runtimeconfig.json
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\bin\Debug\net7.0\oopBankomatas.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\bin\Debug\net7.0\oopBankomatas.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.csproj.AssemblyReference.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.AssemblyInfoInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.AssemblyInfo.cs
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.csproj.CoreCompileInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\refint\oopBankomatas.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\oopBankomatas.genruntimeconfig.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\oopBankomatas\oopBankomatas\obj\Debug\net7.0\ref\oopBankomatas.dll
