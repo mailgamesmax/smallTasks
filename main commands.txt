@@ -1,0 +1,4 @@
+cd \source\repos\OOP\folder_github
+1. git add .
+2. git commit -m "your commit message"
+3. git push
