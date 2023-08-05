@@ -26,29 +26,29 @@ namespace oopBankomatas.Models
             ClientID = clientID;
         }
 
-        public Client newClientCreate() 
+        public Client ClientCreate() 
         {
             string name = "Skrudz";
             string lastName = "MacDac";
             int personalID = 01234567890;
-            int clientID = 03456781;
+            int clientID = 11;//456781;
             var newClient = new Client(name, lastName, personalID, clientID);
             UpdateAllClients(newClient);
             return newClient; 
         }
 
-        public List<Client> UpdateAllClients(Client addingClient)
+        public List<Client> UpdateAllClients(Client newClient)
         {
-            var updatedAllClients = new List<Client>(allClients) { addingClient };
-            return updatedAllClients;
+            AllClients.Add(newClient);
+            return AllClients;
         }
 
         public string Name { get; set; }
         public string LastName { get; set; }
         private int PersonalID { get; set; } // private
-        internal int ClientID { get; set; } // private?
+        internal int ClientID { get; set; } // ?
 
-        public static List<Client> allClients { get; set;} = new List<Client>();
+        public static List<Client> AllClients { get; set;} = new List<Client>();
 
 
 

@@ -18,12 +18,49 @@ namespace oopBankomatas
             DateTime nnow = DateTime.Now.AddYears(7);
             Console.WriteLine(nnow);*/
 
-            var newClient = new Client();
-            newClient.newClientCreate();
-            var newAccount = new Account();
-            newAccount.CreateAccount(newAccount);
+            var client = new Client();
+            var newClient = client.ClientCreate();
+            var account = new Account();
+            var newAccount = account.CreateAccount(newClient);
 
-            Console.WriteLine();
+            foreach (var oneclient in Client.AllClients) 
+            { 
+                Console.WriteLine($"klientas  {oneclient.Name}, {oneclient.ClientID} "); 
+            }
+
+
+            foreach (var oneclient in Account.AllAccounts)
+            { Console.WriteLine($"acc  {oneclient.Name}, {oneclient.Balance} "); }
+
+            Console.WriteLine("skaiciavimu projektavimas\n");
+
+            account.ManageAction(newAccount);
+            account.ActionReport(newAccount);
+
+/*            string? actionDescription;
+            double actionValue = 0;
+            Dictionary<string, double> actionDetails = new Dictionary<string, double>();
+            List<Dictionary<string, double>> accountActions = new List<Dictionary<string, double>>(5);
+
+            if (accountActions.Count > 5) accountActions.RemoveAt(0);
+            actionDetails = new Dictionary<string, double>();
+            actionDescription = "ideti";
+            actionValue = 10;
+            actionDetails.Add(actionDescription, actionValue);
+            accountActions.Add(actionDetails);
+
+            int i = 1;
+            foreach (var action in  accountActions)
+            {
+                Console.WriteLine(i);
+                foreach (var currentA in action)
+                {
+                Console.WriteLine("turinys " + currentA.Key);
+                Console.WriteLine("suma " + currentA.Value);
+                Console.WriteLine();
+                }
+                i++;
+            }*/
 
         }
 
