@@ -32,17 +32,23 @@ namespace oopBankomatas.Models
             string lastName = "MacDac";
             int personalID = 01234567890;
             int clientID = 03456781;
-            new Client(name, lastName, personalID, clientID);
+            var newClient = new Client(name, lastName, personalID, clientID);
+            UpdateAllClients(newClient);
+            return newClient; 
+        }
 
-            return new Client(); 
+        public List<Client> UpdateAllClients(Client addingClient)
+        {
+            var updatedAllClients = new List<Client>(allClients) { addingClient };
+            return updatedAllClients;
         }
 
         public string Name { get; set; }
         public string LastName { get; set; }
-        public int PersonalID { get; set; } // private
-        public int ClientID { get; set; } // private?
+        private int PersonalID { get; set; } // private
+        internal int ClientID { get; set; } // private?
 
-        public List<Client> allClients { get; set;} = new List<Client>();
+        public static List<Client> allClients { get; set;} = new List<Client>();
 
 
 

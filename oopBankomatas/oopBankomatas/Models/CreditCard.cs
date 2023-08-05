@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace oopBankomatas.Models
 {
-    internal class CreditCard
+    internal class CreditCard : Client
     {
         public CreditCard() { }
         public CreditCard(int uniqNr, DateOnly validUntil)
