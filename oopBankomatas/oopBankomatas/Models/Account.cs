@@ -11,7 +11,7 @@ namespace oopBankomatas.Models
         public Account() { }
         public Account(string name, string lastName) : base(name, lastName) {}
 
-        public Account(string name, string lastName, Dictionary<int, string> accoutID) : this(name, lastName)
+        public Account(string name, string lastName, Dictionary<string, string> accoutID) : this(name, lastName)
         {
             AccountID = accoutID;
         }
@@ -21,9 +21,9 @@ namespace oopBankomatas.Models
 
             string userName = client.Name;
             string userLastName = client.LastName;
-            int clientID = client.ClientID;
+            string clientID = client.ClientID;
             string inputPassw = "abc123"; // pakeisti i ivesti
-            Dictionary<int, string> accountID = new Dictionary<int, string>() {{ clientID, inputPassw }}; //turi būti viensa dict......
+            Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
             Account newAccount = new Account(userName, userLastName, accountID);
             UpdateAllAccounts(newAccount);
             return newAccount;
@@ -63,12 +63,12 @@ namespace oopBankomatas.Models
                     account.Balance += actionValue;
                     Console.WriteLine($"{actionDescription} <- įvykdyta\n{actionValue} <- operacijos suma\n{account.Balance} <- ESAMAS LIKUTIS");
                 }
-                Console.WriteLine("dar kas nors? (+)");
+                Console.WriteLine("dar kas nors? (+) ");
                 requestForAnotherAction = Console.ReadLine();
             }
 
             while (requestForAnotherAction == "+");
-            }
+        }
 
         public void ActionReport(Account account) 
         {
@@ -89,8 +89,8 @@ namespace oopBankomatas.Models
 
         
 
-        public Dictionary<int, string> AccountID { get; set; } // clientID+passw    // static??????????    
-        public double Balance { get; set; } = 1500;
+        public Dictionary<string, string> AccountID { get; set; } // clientID+passw    // static??????????    
+        public double Balance { get; set; } = 1500; //testinis likutis
 /*        public string ActionDescription { get; set; }
         public double ActionValue { get; set; }*/
         public List<Dictionary<string, double>> AccountActions { get; set; } = new List<Dictionary<string, double>>(5);

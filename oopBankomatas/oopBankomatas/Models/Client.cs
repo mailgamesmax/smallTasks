@@ -10,29 +10,41 @@ namespace oopBankomatas.Models
     {
 
         public Client() { }
-        public Client(string name, string lastName)
+        public Client(string name, string lastName) 
         {
             Name = name;
             LastName = lastName;
         }
 
-        public Client(string name, string lastName, int personalID) : this (name, lastName)
+        public Client(string name, string lastName, string inputPersonalID) : this (name, lastName)
         {            
-            PersonalID = personalID;         
+            InputPersonalID = inputPersonalID;         
         }
 
-        public Client(string name, string lastName, int personalID, int clientID) : this(name, lastName, personalID)
+        public Client(string name, string lastName, string inputPersonalID, string clientID) : this(name, lastName, inputPersonalID)
         {
             ClientID = clientID;
         }
 
         public Client ClientCreate() 
         {
-            string name = "Skrudz";
-            string lastName = "MacDac";
-            int personalID = 01234567890;
-            int clientID = 11;//456781;
-            var newClient = new Client(name, lastName, personalID, clientID);
+            Console.Write("Įvedam vardą: ");
+            string name = Console.ReadLine();
+            //string name = "Skrudz";
+            Console.Write("Įvedam pav: ");
+            //string lastName = "MacDac";
+            string lastName = Console.ReadLine();
+            Console.Write("Įvedam a/k (uzteks 8 sk......) : ");
+            string inputPersonalID = Console.ReadLine();
+            //string inputPersonalID = "30112291234";
+            //int inputPersonalID = 30112291234;
+            /*BasisFunctions.CharakterLengthLimit(inputPersonalID, 5);
+            BasisFunctions.CharakterLengthLimit(BasisFunctions.NrRandomGeneratorOnTime(), 8);*/
+
+            
+            //CharakterLengthLimit
+            string clientID = BasisFunctions.CharakterLengthLimit(inputPersonalID, 5)+            BasisFunctions.CharakterLengthLimit(BasisFunctions.NrRandomGeneratorOnTime(), 8);
+            var newClient = new Client(name, lastName, inputPersonalID, clientID);
             UpdateAllClients(newClient);
             return newClient; 
         }
@@ -43,14 +55,12 @@ namespace oopBankomatas.Models
             return AllClients;
         }
 
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        private int PersonalID { get; set; } // private
-        internal int ClientID { get; set; } // ?
+        //public string Name { get; set; }
+        //public string LastName { get; set; }
+        private string InputPersonalID { get; set; } // private
+        //internal int ClientID { get; set; } // ?
 
         public static List<Client> AllClients { get; set;} = new List<Client>();
-
-
 
     }
 }

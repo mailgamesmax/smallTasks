@@ -16,34 +16,22 @@ namespace oopBankomatas.Models
             ValidUntil = validUntil;
         }
 
-        public CreditCard(string uniqNr, DateTime validUntil, int clientID) : this(uniqNr, validUntil)
+        public CreditCard(string uniqNr, DateTime validUntil, string clientID) : this(uniqNr, validUntil)
         {
             ClientID = clientID;
             //    OwnerName = ownerName;
         }
 
-        public CreditCard MakeNewCard()
+        public CreditCard MakeNewCard(Account account)
         
         {
-            //int clienttID = account.ClientID;
-            int clienttID = 123;
-            DateTime CalculateValidationTime = DateTime.Now.AddYears(7); //new 
+            string clienttID = account.ClientID;
+            //int clienttID = 123;
+            DateTime CalculateValidationTime = DateTime.Today.AddYears(7); 
 
             string createUniqNr = BasisFunctions.NrRandomGeneratorOnTime();
             createUniqNr = BasisFunctions.
             CharakterLengthLimit(createUniqNr, 9);
-
-            /*int controlLenght = 9;
-            int addSymbols = controlLenght - createUniqNr.Length;
-
-            if (createUniqNr.Length < controlLenght)
-            {
-                createUniqNr += new string('0', addSymbols);
-            }
-            else if (createUniqNr.Length > controlLenght) 
-            { 
-                createUniqNr = createUniqNr.Substring(0, controlLenght);
-            }*/
 
             var newCard = new CreditCard(createUniqNr, CalculateValidationTime, clienttID);
             AllCards.Add(newCard);
@@ -76,10 +64,10 @@ namespace oopBankomatas.Models
         }
 
 
-        public string UniqNr { get; set; } // 6 simb del paprastumo
+        public string UniqNr { get; set; } // 9 simb del paprastumo
 
         public DateTime ValidUntil { get; set; }
-        public int ClientID  { get; set; }
+        //public int ClientID  { get; set; }
 
         public static List<CreditCard> AllCards { get; set; } = new List<CreditCard>();
 

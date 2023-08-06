@@ -8,29 +8,34 @@ namespace oopBankomatas
         {
             Console.WriteLine("Hello, Bankomat.......!");
 
-            //DateTime today = Convert.ToDateTime(Console.ReadLine());
-/*            DateTime today = DateTime.Today;
-            string toText = today.ToString("yyMMdd");
-            int toInt = Convert.ToInt32(toText);
-            Console.WriteLine(toInt);
-            Console.WriteLine();
+//vartot kurimas - veikia
 
-            DateTime nnow = DateTime.Now.AddYears(7);
-            Console.WriteLine(nnow);*/
+            string? requestForAnotherAction;
+            do
+            {
+                var client = new Client();
+                var newClient = client.ClientCreate();
+                var account = new Account();
+                var newAccount = account.CreateAccount(newClient);
 
-            var client = new Client();
-            var newClient = client.ClientCreate();
-            var account = new Account();
-            var newAccount = account.CreateAccount(newClient);
+
+                Console.WriteLine("pakartot? (+) ");
+                requestForAnotherAction = Console.ReadLine();
+
+            }
+            while (requestForAnotherAction == "+");
+            //vartot kurimas - veikia END
+
 
             foreach (var oneclient in Client.AllClients) 
             { 
-                Console.WriteLine($"klientas  {oneclient.Name}, {oneclient.ClientID} "); 
+            Console.WriteLine($"klientas  {oneclient.Name}, suteiktas ID  {oneclient.ClientID} "); 
             }
 
 
             foreach (var oneclient in Account.AllAccounts)
-            { Console.WriteLine($"acc  {oneclient.Name}, {oneclient.Balance} "); }
+            { Console.WriteLine($"acc  {oneclient.Name}, {oneclient.Balance} "); 
+            }
 
             Console.WriteLine("skaiciavimu projektavimas\n");
 
@@ -41,10 +46,10 @@ namespace oopBankomatas
 
 
             var makeCard = new CreditCard();
+/*            makeCard.MakeNewCard();
             makeCard.MakeNewCard();
             makeCard.MakeNewCard();
-            makeCard.MakeNewCard();
-            makeCard.MakeNewCard();
+            makeCard.MakeNewCard();*/
             makeCard.showCardInfo();
 
 
