@@ -8,6 +8,7 @@ namespace oopBankomatas.Models
 {
     internal interface Iidentify
     {
-        public bool CheckValidation();
+        public bool Verification();
+        //public bool Verification();
     }
 }

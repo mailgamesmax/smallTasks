@@ -6,27 +6,82 @@ using System.Threading.Tasks;
 
 namespace oopBankomatas.Models
 {
-    internal class Account : Client
+    internal class Account : Client //, Iidentify
     {
         public Account() { }
         public Account(string name, string lastName) : base(name, lastName) {}
+        public Account(string name, string lastName, string clientID) : this(name, lastName)
+        {
+            this.ClientID = clientID;
+        }
 
-        public Account(string name, string lastName, Dictionary<string, string> accoutID) : this(name, lastName)
+/*        public Account(string name, string lastName, Dictionary<string, string> accoutID) : this(name, lastName)
         {
             AccountID = accoutID;
         }
-
+*/
         public virtual Account CreateAccount(Client client)
         {
 
             string userName = client.Name;
             string userLastName = client.LastName;
             string clientID = client.ClientID;
-            string inputPassw = "abc123"; // pakeisti i ivesti
-            Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
-            Account newAccount = new Account(userName, userLastName, accountID);
+            bool isCoupeledClientIdAndPassw = false;
+            do
+            {
+
+                Console.Write("sukurk slaptiką: ");
+                string inputPassw = "abc123"; // pakeisti i ivesti
+
+                isCoupeledClientIdAndPassw = Autorisation.TryAdd(clientID, inputPassw); //turi būti vienas dict......
+                if (isCoupeledClientIdAndPassw) { Console.WriteLine($"isimink slapika.....->  {inputPassw}"); }
+                else { Console.WriteLine("kažkas ne OK su slapiku"); }
+            }
+            while (isCoupeledClientIdAndPassw);
+            //Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
+            Account newAccount = new Account(userName, userLastName, clientID);
             UpdateAllAccounts(newAccount);
             return newAccount;
+        }
+
+        public bool Verification()
+        {
+            Console.WriteLine("duok passw.....");
+            string inputedPasw = "abc123"; return true; 
+
+        }
+        public Account CreditCardAccountVerification(CreditCard indicatedCard)
+        {
+            Account indicatedAcc = AllAccounts.SingleOrDefault(acc => acc.ClientID == indicatedCard.ClientID);
+            bool passwExist = Autorisation.TryGetValue(indicatedAcc.ClientID, out var getPassw);
+            string? checkThisPassw;
+            if (passwExist)
+            { 
+                int i = 1;
+                do
+                {
+                    Console.WriteLine("duok pasw...");
+                    checkThisPassw = "abc123"; //input.........
+                    if (checkThisPassw == getPassw)
+                    {
+                        Console.WriteLine("acc passw ok"); //for test only
+                        return indicatedAcc;
+                    }
+                    else
+                    {
+                        Console.WriteLine("acc passw wrong"); //for test only
+                        //return false;
+                        i++;
+                    }
+                }
+                while (checkThisPassw != getPassw && i < 3);
+                return new Account();
+            }    
+            else 
+            {
+                Console.WriteLine("kortelės klaida (nėra passw)");
+                return new Account();
+            }
         }
 
         public List<Account> UpdateAllAccounts(Account newAccount)
@@ -89,7 +144,7 @@ namespace oopBankomatas.Models
 
         
 
-        public Dictionary<string, string> AccountID { get; set; } // clientID+passw    // static??????????    
+        private static Dictionary<string, string> Autorisation { get; set; } // clientID+passw    // static??????????    
         public double Balance { get; set; } = 1500; //testinis likutis
 /*        public string ActionDescription { get; set; }
         public double ActionValue { get; set; }*/

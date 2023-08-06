@@ -8,7 +8,6 @@ namespace oopBankomatas.Models
 {
     internal class Client: BasisFunctions//, Iidentify
     {
-
         public Client() { }
         public Client(string name, string lastName) 
         {
@@ -36,14 +35,8 @@ namespace oopBankomatas.Models
             string lastName = Console.ReadLine();
             Console.Write("Įvedam a/k (uzteks 8 sk......) : ");
             string inputPersonalID = Console.ReadLine();
-            //string inputPersonalID = "30112291234";
-            //int inputPersonalID = 30112291234;
-            /*BasisFunctions.CharakterLengthLimit(inputPersonalID, 5);
-            BasisFunctions.CharakterLengthLimit(BasisFunctions.NrRandomGeneratorOnTime(), 8);*/
 
-            
-            //CharakterLengthLimit
-            string clientID = BasisFunctions.CharakterLengthLimit(inputPersonalID, 5)+            BasisFunctions.CharakterLengthLimit(BasisFunctions.NrRandomGeneratorOnTime(), 8);
+            string clientID = BasisFunctions.CharakterLengthChanger(inputPersonalID, 5)+            BasisFunctions.CharakterLengthChanger(BasisFunctions.NrRandomGeneratorOnTime(), 8);
             var newClient = new Client(name, lastName, inputPersonalID, clientID);
             UpdateAllClients(newClient);
             return newClient; 
@@ -55,8 +48,6 @@ namespace oopBankomatas.Models
             return AllClients;
         }
 
-        //public string Name { get; set; }
-        //public string LastName { get; set; }
         private string InputPersonalID { get; set; } // private
         //internal int ClientID { get; set; } // ?
 

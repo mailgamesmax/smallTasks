@@ -17,7 +17,7 @@ namespace oopBankomatas.Models
             return generatedNr;
         }
 
-        public static string CharakterLengthLimit(string basisCharakter, int controlLenght) //karpom rezultata pagal norima ilgi
+        public static string CharakterLengthChanger(string basisCharakter, int controlLenght) //karpom rezultata pagal norima ilgi
         {            
             int addSymbols = controlLenght - basisCharakter.Length;
 
