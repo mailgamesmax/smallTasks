@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace oopBankomatas.Models
 {
-    internal class Client
+    internal class Client: BasisFunctions//, Iidentify
     {
 
         public Client() { }

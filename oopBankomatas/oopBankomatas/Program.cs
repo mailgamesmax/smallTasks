@@ -34,33 +34,44 @@ namespace oopBankomatas
 
             Console.WriteLine("skaiciavimu projektavimas\n");
 
-            account.ManageAction(newAccount);
-            account.ActionReport(newAccount);
+            //account.ManageAction(newAccount);
+            //account.ActionReport(newAccount);
 
-/*            string? actionDescription;
-            double actionValue = 0;
-            Dictionary<string, double> actionDetails = new Dictionary<string, double>();
-            List<Dictionary<string, double>> accountActions = new List<Dictionary<string, double>>(5);
+            Console.WriteLine();
 
-            if (accountActions.Count > 5) accountActions.RemoveAt(0);
-            actionDetails = new Dictionary<string, double>();
-            actionDescription = "ideti";
-            actionValue = 10;
-            actionDetails.Add(actionDescription, actionValue);
-            accountActions.Add(actionDetails);
 
-            int i = 1;
-            foreach (var action in  accountActions)
-            {
-                Console.WriteLine(i);
-                foreach (var currentA in action)
-                {
-                Console.WriteLine("turinys " + currentA.Key);
-                Console.WriteLine("suma " + currentA.Value);
-                Console.WriteLine();
-                }
-                i++;
-            }*/
+            var makeCard = new CreditCard();
+            makeCard.MakeNewCard();
+            makeCard.MakeNewCard();
+            makeCard.MakeNewCard();
+            makeCard.MakeNewCard();
+            makeCard.showCardInfo();
+
+
+            /*            string? actionDescription;
+                        double actionValue = 0;
+                        Dictionary<string, double> actionDetails = new Dictionary<string, double>();
+                        List<Dictionary<string, double>> accountActions = new List<Dictionary<string, double>>(5);
+
+                        if (accountActions.Count > 5) accountActions.RemoveAt(0);
+                        actionDetails = new Dictionary<string, double>();
+                        actionDescription = "ideti";
+                        actionValue = 10;
+                        actionDetails.Add(actionDescription, actionValue);
+                        accountActions.Add(actionDetails);
+
+                        int i = 1;
+                        foreach (var action in  accountActions)
+                        {
+                            Console.WriteLine(i);
+                            foreach (var currentA in action)
+                            {
+                            Console.WriteLine("turinys " + currentA.Key);
+                            Console.WriteLine("suma " + currentA.Value);
+                            Console.WriteLine();
+                            }
+                            i++;
+                        }*/
 
         }
 

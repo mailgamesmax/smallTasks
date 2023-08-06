@@ -23,7 +23,7 @@ namespace oopBankomatas.Models
             string userLastName = client.LastName;
             int clientID = client.ClientID;
             string inputPassw = "abc123"; // pakeisti i ivesti
-            Dictionary<int, string> accountID = new Dictionary<int, string>() {{ clientID, inputPassw }};
+            Dictionary<int, string> accountID = new Dictionary<int, string>() {{ clientID, inputPassw }}; //turi būti viensa dict......
             Account newAccount = new Account(userName, userLastName, accountID);
             UpdateAllAccounts(newAccount);
             return newAccount;
@@ -89,7 +89,7 @@ namespace oopBankomatas.Models
 
         
 
-        public Dictionary<int, string> AccountID { get; set; } // clientID+passw        
+        public Dictionary<int, string> AccountID { get; set; } // clientID+passw    // static??????????    
         public double Balance { get; set; } = 1500;
 /*        public string ActionDescription { get; set; }
         public double ActionValue { get; set; }*/
