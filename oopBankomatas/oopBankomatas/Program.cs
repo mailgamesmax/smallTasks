@@ -8,23 +8,26 @@ namespace oopBankomatas
         {
             Console.WriteLine("Hello, Bankomat.......!");
 
-//vartot kurimas - veikia
+            var tcl = new Client(); // test vartotojai
+            tcl.CreateClientsForTest();
+
+/*            //vartot kurimas - veikia
 
             string? requestForAnotherAction;
-            do
-            {
-                var client = new Client();
-                var newClient = client.ClientCreate();
-                var account = new Account();
-                var newAccount = account.CreateAccount(newClient);
+                        do
+                        {
+                            var client = new Client();
+                            var newClient = client.ClientCreate();
+                            var account = new Account();
+                            var newAccount = account.CreateAccount(newClient);
 
 
-                Console.WriteLine("pakartot? (+) ");
-                requestForAnotherAction = Console.ReadLine();
+                            Console.WriteLine("pakartot? (+) ");
+                            requestForAnotherAction = Console.ReadLine();
 
-            }
-            while (requestForAnotherAction == "+");
-            //vartot kurimas - veikia END
+                        }
+                        while (requestForAnotherAction == "+");
+            //vartot kurimas - veikia END*/
 
 
             foreach (var oneclient in Client.AllClients) 
@@ -52,6 +55,8 @@ namespace oopBankomatas
             makeCard.MakeNewCard();*/
             makeCard.showCardInfo();
 
+
+            makeCard.CardVerification();
 
             /*            string? actionDescription;
                         double actionValue = 0;

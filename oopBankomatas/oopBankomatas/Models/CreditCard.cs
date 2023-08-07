@@ -24,18 +24,18 @@ namespace oopBankomatas.Models
 
         public CreditCard MakeNewCard(Account account)        
         {
-            string clienttID = account.ClientID;
-            //int clienttID = 123;
+            string createUniqNr = BasisFunctions.NrRandomGeneratorOnTime();
+            //Console.WriteLine(createUniqNr);
+            createUniqNr = BasisFunctions.CharakterLengthChanger(createUniqNr, this.UniqNrLenght);
+            Console.WriteLine("sukurta card " + createUniqNr); //savikontrolei
             DateTime CalculateValidationTime = DateTime.Today.AddYears(7); 
 
-            string createUniqNr = BasisFunctions.NrRandomGeneratorOnTime();
-            createUniqNr = BasisFunctions.
-            CharakterLengthChanger(createUniqNr, this.UniqNrLenght);
+            string clienttID = account.ClientID;
+            //int clienttID = 123;
 
             var newCard = new CreditCard(createUniqNr, CalculateValidationTime, clienttID);
             AllCards.Add(newCard);
             return new CreditCard();
-
         }
 
         public void showCardInfo()
@@ -47,7 +47,8 @@ namespace oopBankomatas.Models
         public Account CardVerification()
         {
             Console.Write("ideti kortele/ivesti nr....... ");
-            string inputedNr = "123456789"; // Console.ReadLine();
+            //string inputedNr = "123456789"; // Console.ReadLine();
+            string inputedNr = Console.ReadLine();
             CreditCard indicatedCard = AllCards.SingleOrDefault(card => card.UniqNr == inputedNr);
             if (inputedNr.Length == this.UniqNrLenght && indicatedCard != null)
             {
@@ -57,7 +58,16 @@ namespace oopBankomatas.Models
                 {
                     Console.WriteLine("data ok "); //for test only
                     var indicatedAcc = CreditCardAccountVerification(indicatedCard);
-                    return indicatedAcc;
+                    if (indicatedAcc != null) 
+                    {
+                    Console.WriteLine($"SAVIKONTROLE rasta: name {indicatedAcc.LastName} \n id {ClientID} \n card nr {indicatedCard.UniqNr}"); //savikontrolei
+                    return indicatedAcc;                    
+                    }
+                    else 
+                    {
+                        Console.WriteLine("oups!! kortele blokuota");
+                        return indicatedAcc; // null
+                    }
                 }
                 else
                 {
@@ -72,44 +82,6 @@ namespace oopBankomatas.Models
             }
         }
 
-
-
-        /*
-        public bool Verification()
-        {
-            Console.Write("ideti kortele/ivesti nr....... ");
-            string inputedNr = "123456789"; // Console.ReadLine();
-            if (inputedNr.Length == this.UniqNrLenght)
-            {
-                Console.WriteLine("card nr ok.");
-                CreditCardVerification(inputedNr);
-            }
-            else { Console.WriteLine("neaptarnaujama kortele (nr.....) "); return false; }
-
-            Console.WriteLine("card nr checking...");
-            return true;
-        }
-                public bool CreditCardVerification(string currentCardNr)
-                {
-                    Console.WriteLine("validation time checking...");
-                    CreditCard indicatedCard = AllCards.SingleOrDefault(card => card.UniqNr == currentCardNr);
-                    if (indicatedCard != null) 
-                    {
-                        if (indicatedCard.ValidUntil > DateTime.Today)
-                        {
-                            Console.WriteLine("data ok ");
-                            if (CreditCardAccountVerification(indicatedCard)) 
-                            {
-                            return true;
-                            }
-                            else { return false; }
-
-
-                        }
-                        else { Console.WriteLine("soriux, baigėsi galiojimas"); return false; }
-                    }
-                    else { Console.WriteLine(" vartotojas nerastas "); return false; }
-                }*/
 
         public int UniqNrLenght { get; set; } = 9;
         

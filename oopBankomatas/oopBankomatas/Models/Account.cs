@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,75 +21,8 @@ namespace oopBankomatas.Models
             AccountID = accoutID;
         }
 */
-        public virtual Account CreateAccount(Client client)
-        {
-
-            string userName = client.Name;
-            string userLastName = client.LastName;
-            string clientID = client.ClientID;
-            bool isCoupeledClientIdAndPassw = false;
-            do
-            {
-
-                Console.Write("sukurk slaptiką: ");
-                string inputPassw = "abc123"; // pakeisti i ivesti
-
-                isCoupeledClientIdAndPassw = Autorisation.TryAdd(clientID, inputPassw); //turi būti vienas dict......
-                if (isCoupeledClientIdAndPassw) { Console.WriteLine($"isimink slapika.....->  {inputPassw}"); }
-                else { Console.WriteLine("kažkas ne OK su slapiku"); }
-            }
-            while (isCoupeledClientIdAndPassw);
-            //Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
-            Account newAccount = new Account(userName, userLastName, clientID);
-            UpdateAllAccounts(newAccount);
-            return newAccount;
-        }
-
-        public bool Verification()
-        {
-            Console.WriteLine("duok passw.....");
-            string inputedPasw = "abc123"; return true; 
-
-        }
-        public Account CreditCardAccountVerification(CreditCard indicatedCard)
-        {
-            Account indicatedAcc = AllAccounts.SingleOrDefault(acc => acc.ClientID == indicatedCard.ClientID);
-            bool passwExist = Autorisation.TryGetValue(indicatedAcc.ClientID, out var getPassw);
-            string? checkThisPassw;
-            if (passwExist)
-            { 
-                int i = 1;
-                do
-                {
-                    Console.WriteLine("duok pasw...");
-                    checkThisPassw = "abc123"; //input.........
-                    if (checkThisPassw == getPassw)
-                    {
-                        Console.WriteLine("acc passw ok"); //for test only
-                        return indicatedAcc;
-                    }
-                    else
-                    {
-                        Console.WriteLine("acc passw wrong"); //for test only
-                        //return false;
-                        i++;
-                    }
-                }
-                while (checkThisPassw != getPassw && i < 3);
-                return new Account();
-            }    
-            else 
-            {
-                Console.WriteLine("kortelės klaida (nėra passw)");
-                return new Account();
-            }
-        }
-
-        public List<Account> UpdateAllAccounts(Account newAccount)
-        {
-            AllAccounts.Add(newAccount);
-            return AllAccounts;
-        }
+ 
+        
 
         public void ManageAction(Account account) 
         {
@@ -142,9 +76,99 @@ namespace oopBankomatas.Models
             Console.WriteLine($"Likutis: {account.Balance}");
         }
 
-        
+        public static Account CreateAccForTest(Client client, string testpassw) //testams
+        {
+            string userName = client.Name;
+            string userLastName = client.LastName;
+            string clientID = client.ClientID;            
+            string inputPassw = testpassw;
+            AutorisationCell.TryAdd(clientID, inputPassw); //turi būti vienas dict......
+            Console.WriteLine($"isimink slapika.....->  {inputPassw}");
+            Account newAccount = new Account(userName, userLastName, clientID);
+            AllAccounts.Add(newAccount);
 
-        private static Dictionary<string, string> Autorisation { get; set; } // clientID+passw    // static??????????    
+            var newCreditCard = new CreditCard();
+            newCreditCard.MakeNewCard(newAccount);
+            Console.WriteLine($"{newCreditCard.UniqNr} - kortelė sukurta");
+            return newAccount;
+        }
+
+    public virtual Account CreateAccount(Client client)
+    {
+
+        string userName = client.Name;
+        string userLastName = client.LastName;
+        string clientID = client.ClientID;
+        bool isCoupeledClientIdAndPassw = false;
+        do
+        {
+
+            Console.Write("sukurk slaptiką: ");
+            string inputPassw = "abc123"; // pakeisti i ivesti
+
+            isCoupeledClientIdAndPassw = AutorisationCell.TryAdd(clientID, inputPassw); //turi būti vienas dict......
+            if (isCoupeledClientIdAndPassw) { Console.WriteLine($"isimink slapika.....->  {inputPassw}"); }
+            else { Console.WriteLine("kažkas ne OK su slapiku"); }
+        }
+        while (!isCoupeledClientIdAndPassw);
+        //Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
+        Account newAccount = new Account(userName, userLastName, clientID);
+        UpdateAllAccounts(newAccount);
+            Console.WriteLine($"{newAccount.Name} - account sukurtas");
+            var newCreditCard = new CreditCard();
+            newCreditCard = newCreditCard.MakeNewCard(newAccount);
+            Console.WriteLine($"{newCreditCard.UniqNr} - kortelė sukurta");
+            return newAccount;
+    }
+
+    /*        public bool Verification()
+            {
+                Console.WriteLine("duok passw.....");
+                string inputedPasw = "abc123"; return true; 
+
+            }*/
+    public Account CreditCardAccountVerification(CreditCard indicatedCard)
+    {
+        Account indicatedAcc = AllAccounts.SingleOrDefault(acc => acc.ClientID == indicatedCard.ClientID);
+        bool passwExist = AutorisationCell.TryGetValue(indicatedAcc.ClientID, out var getPassw);
+            Console.WriteLine("issaugotas passw -> \n" + getPassw); // savikontrolei
+            string? checkThisPassw;
+        if (passwExist)
+        {
+            int i = 1;
+            do
+            {
+                Console.WriteLine("duok pasw...");
+                    checkThisPassw = Console.ReadLine();
+                if (checkThisPassw == getPassw)
+                {
+                    Console.WriteLine("acc passw ok"); //for test only
+                    return indicatedAcc;
+                }
+                else
+                {
+                    Console.WriteLine("acc passw wrong"); //for test only
+                                                          //return false;
+                    i++;
+                }
+            }
+            while (checkThisPassw != getPassw && i < 4);
+            indicatedAcc = null;
+            return indicatedAcc;
+        }
+        else
+        {
+            Console.WriteLine("kortelės klaida (nėra passw)");
+            return new Account();
+        }
+    }
+
+        public List<Account> UpdateAllAccounts(Account newAccount)
+        {
+            AllAccounts.Add(newAccount);
+            return AllAccounts;
+        }
+        private static Dictionary<string, string> AutorisationCell { get; set; } = new Dictionary<string, string>(); // clientID+passw      
         public double Balance { get; set; } = 1500; //testinis likutis
 /*        public string ActionDescription { get; set; }
         public double ActionValue { get; set; }*/

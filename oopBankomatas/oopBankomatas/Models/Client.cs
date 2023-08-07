@@ -48,6 +48,25 @@ namespace oopBankomatas.Models
             return AllClients;
         }
 
+        public void CreateClientsForTest() //testams
+        {            
+            var newClient = new Client("Vardas kl1", "Pavarde kl1", "12345678", "987654321");
+            UpdateAllClients(newClient);
+            string testpassw = "abs123";
+            Account.CreateAccForTest(newClient, testpassw);
+
+            newClient = new Client("Vardas kl2", "Pavarde kl2", "22345678", "987654322");
+            UpdateAllClients(newClient);
+            testpassw = "Abs123";
+            Account.CreateAccForTest(newClient, testpassw);
+
+            newClient = new Client("Vardas kl3", "Pavarde kl3", "32345678", "987654322");
+            UpdateAllClients(newClient);
+            testpassw = "Abs124";
+            Account.CreateAccForTest(newClient, testpassw);
+
+        }
+
         private string InputPersonalID { get; set; } // private
         //internal int ClientID { get; set; } // ?
 
