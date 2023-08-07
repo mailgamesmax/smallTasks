@@ -24,34 +24,16 @@ namespace oopBankomatas.Models
  
         
 
-        public void ManageAction(Account account) 
+        public void ActionMeniu(Account account) 
         {
-        string? actionDescription;
+        string? actionDescription = null;
         double actionValue = 0;
-        Dictionary<string, double> actionDetails = new Dictionary<string, double>();
+        //Dictionary<string, double> actionDetails = new Dictionary<string, double>();
         string? requestForAnotherAction;
             do
             {
-
-
-                actionDetails = new Dictionary<string, double>();
                 Console.Write("pasirink veiskmą ");
-                actionDescription = Console.ReadLine();
-                Console.Write("Įvesk sumą (įšimti -max 1000e): ");
-                actionValue = Convert.ToDouble(Console.ReadLine());
-
-                if (account.Balance + actionValue < 0 || actionValue < (-1000))
-                {
-                    Console.WriteLine("ką čia bandai apgaut seni?....");
-                }
-                else
-                {
-                    if (account.AccountActions.Count > 4) account.AccountActions.RemoveAt(0);
-                    actionDetails.Add(actionDescription, actionValue);
-                    account.AccountActions.Add(actionDetails);
-                    account.Balance += actionValue;
-                    Console.WriteLine($"{actionDescription} <- įvykdyta\n{actionValue} <- operacijos suma\n{account.Balance} <- ESAMAS LIKUTIS");
-                }
+                actionDescription = ActionManage(account, ref actionDescription);
                 Console.WriteLine("dar kas nors? (+) ");
                 requestForAnotherAction = Console.ReadLine();
             }
@@ -76,22 +58,6 @@ namespace oopBankomatas.Models
             Console.WriteLine($"Likutis: {account.Balance}");
         }
 
-        public static Account CreateAccForTest(Client client, string testpassw) //testams
-        {
-            string userName = client.Name;
-            string userLastName = client.LastName;
-            string clientID = client.ClientID;            
-            string inputPassw = testpassw;
-            AutorisationCell.TryAdd(clientID, inputPassw); //turi būti vienas dict......
-            Console.WriteLine($"isimink slapika.....->  {inputPassw}");
-            Account newAccount = new Account(userName, userLastName, clientID);
-            AllAccounts.Add(newAccount);
-
-            var newCreditCard = new CreditCard();
-            newCreditCard.MakeNewCard(newAccount);
-            Console.WriteLine($"{newCreditCard.UniqNr} - kortelė sukurta");
-            return newAccount;
-        }
 
     public virtual Account CreateAccount(Client client)
     {
@@ -159,7 +125,8 @@ namespace oopBankomatas.Models
         else
         {
             Console.WriteLine("kortelės klaida (nėra passw)");
-            return new Account();
+            indicatedAcc = null;
+            return indicatedAcc;
         }
     }
 
@@ -168,10 +135,85 @@ namespace oopBankomatas.Models
             AllAccounts.Add(newAccount);
             return AllAccounts;
         }
+
+        public string ActionManage(Account account, ref string availibleActionDescription)
+        {
+            int choosedAction = 0;
+            string check_Balance = "Patikrinti lėšų likutį"; //1
+            string check_LastActions = "Peržiūrėti transakcijas (5 paskutinės"; //2
+            string take_Cash = "Išimti pinigų"; //0
+            string userDisconnect = "Grąžinti kortelę"; //0
+                                                        //string availibleActionDescription;
+            Console.WriteLine($"Pasirinkite veiksmą: \n 1 - {check_Balance} \n 2 -{check_LastActions} \n 3 - {take_Cash} \n 0 - {userDisconnect} \n");
+            choosedAction = Convert.ToInt16(Console.ReadLine());
+
+            switch (choosedAction)
+            {
+                case 1:
+                    availibleActionDescription = check_Balance;
+                    Console.WriteLine("esamas likutis " +account.Balance+ "euriuku");
+                    return availibleActionDescription;
+                    break;
+                case 2:
+                    availibleActionDescription = check_LastActions;
+                    ActionReport(account);
+                    return availibleActionDescription;
+                    break;
+                case 3:
+                    availibleActionDescription = take_Cash;
+
+                    Console.Write("Įvesk sumą (įšimti -max 1000e): ");
+                    double actionValue = Convert.ToDouble(Console.ReadLine());
+                    Dictionary<string, double> actionDetails = new Dictionary<string, double>();
+
+                    if (account.Balance - actionValue < 0 || actionValue > 1000)
+                    {
+                        Console.WriteLine("ką čia bandai apgaut seni?....");
+                    }
+                    else
+                    {
+                        if (account.AccountActions.Count > 4) account.AccountActions.RemoveAt(0);
+                        actionDetails.Add(availibleActionDescription, actionValue);
+                        account.AccountActions.Add(actionDetails);
+                        account.Balance -= actionValue;
+                        Console.WriteLine($"{availibleActionDescription} <- įvykdyta\n{actionValue} <- operacijos suma\n{account.Balance} <- ESAMAS LIKUTIS");
+                    }
+                    return availibleActionDescription;
+                    break;
+                case 0:
+                    availibleActionDescription = userDisconnect;
+                    return availibleActionDescription;
+                    break;
+            }
+            return availibleActionDescription = "nepasirinkta";
+        }
+
+
+        // testing begin
+        public static Account CreateAccForTest(Client client, string testpassw) //testams
+        {
+            string userName = client.Name;
+            string userLastName = client.LastName;
+            string clientID = client.ClientID;
+            string inputPassw = testpassw;
+            AutorisationCell.TryAdd(clientID, inputPassw); //turi būti vienas dict......
+            Console.WriteLine($"isimink slapika.....->  {inputPassw}");
+            Account newAccount = new Account(userName, userLastName, clientID);
+            AllAccounts.Add(newAccount);
+
+            var newCreditCard = new CreditCard();
+            newCreditCard.MakeNewCard(newAccount);
+            Console.WriteLine($"{newCreditCard.UniqNr} - kortelė sukurta");
+            return newAccount;
+        }
+        // testing END
+
         private static Dictionary<string, string> AutorisationCell { get; set; } = new Dictionary<string, string>(); // clientID+passw      
-        public double Balance { get; set; } = 1500; //testinis likutis
-/*        public string ActionDescription { get; set; }
-        public double ActionValue { get; set; }*/
+        public double Balance { get; set; } = 1500; //testinis likutis 1500
+        
+        //public string AvailibleActions { get; set; }
+        public double ActionValue { get; set; }
+
         public List<Dictionary<string, double>> AccountActions { get; set; } = new List<Dictionary<string, double>>(5);
         public static List<Account> AllAccounts { get; set; } = new List<Account>();
     }

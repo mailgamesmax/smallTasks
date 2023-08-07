@@ -42,8 +42,10 @@ namespace oopBankomatas
 
             Console.WriteLine("skaiciavimu projektavimas\n");
 
-            //account.ManageAction(newAccount);
-            //account.ActionReport(newAccount);
+            var account = new Account();
+            var indicatedAcc = Account.AllAccounts.SingleOrDefault(acc => acc.ClientID == "987654321");
+            account.ActionMeniu(indicatedAcc);
+            account.ActionReport(indicatedAcc);
 
             Console.WriteLine();
 
@@ -56,7 +58,7 @@ namespace oopBankomatas
             makeCard.showCardInfo();
 
 
-            makeCard.CardVerification();
+            //makeCard.CardVerification();
 
             /*            string? actionDescription;
                         double actionValue = 0;

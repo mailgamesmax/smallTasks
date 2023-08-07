@@ -61,7 +61,7 @@ namespace oopBankomatas.Models
                     if (indicatedAcc != null) 
                     {
                     Console.WriteLine($"SAVIKONTROLE rasta: name {indicatedAcc.LastName} \n id {ClientID} \n card nr {indicatedCard.UniqNr}"); //savikontrolei
-                    return indicatedAcc;                    
+                        return indicatedAcc;                    
                     }
                     else 
                     {
