@@ -29,9 +29,7 @@ namespace oopBankomatas.Models
         {
             Console.Write("Įvedam vardą: ");
             string name = Console.ReadLine();
-            //string name = "Skrudz";
             Console.Write("Įvedam pav: ");
-            //string lastName = "MacDac";
             string lastName = Console.ReadLine();
             Console.Write("Įvedam a/k (uzteks 8 sk......) : ");
             string inputPersonalID = Console.ReadLine();
@@ -53,17 +51,17 @@ namespace oopBankomatas.Models
         {
             var newClient = new Client("Vardas kl1", "Pavarde kl1", "12345678", "987654321");
             UpdateAllClients(newClient);
-            string testpassw = "abs123";
+            string testpassw = "abc123";
             Account.CreateAccForTest(newClient, testpassw);
 
             newClient = new Client("Vardas kl2", "Pavarde kl2", "22345678", "987654322");
             UpdateAllClients(newClient);
-            testpassw = "Abs123";
+            testpassw = "Abc123";
             Account.CreateAccForTest(newClient, testpassw);
 
-            newClient = new Client("Vardas kl3", "Pavarde kl3", "32345678", "987654322");
+            newClient = new Client("Vardas kl3", "Pavarde kl3", "32345678", "987654323");
             UpdateAllClients(newClient);
-            testpassw = "Abs124";
+            testpassw = "Abc124";
             Account.CreateAccForTest(newClient, testpassw);
 
         }

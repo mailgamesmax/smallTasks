@@ -16,31 +16,6 @@ namespace oopBankomatas.Models
             this.ClientID = clientID;
         }
 
-/*        public Account(string name, string lastName, Dictionary<string, string> accoutID) : this(name, lastName)
-        {
-            AccountID = accoutID;
-        }
-*/
- 
-        
-
-        public void ActionMeniu(Account account) 
-        {
-        string? actionDescription = null;
-        double actionValue = 0;
-        //Dictionary<string, double> actionDetails = new Dictionary<string, double>();
-        string? requestForAnotherAction;
-            do
-            {
-                Console.Write("pasirink veiskmą ");
-                actionDescription = ActionManage(account, ref actionDescription);
-                Console.WriteLine("dar kas nors? (+) ");
-                requestForAnotherAction = Console.ReadLine();
-            }
-
-            while (requestForAnotherAction == "+");
-        }
-
         public void ActionReport(Account account) 
         {
             int i = 1;
@@ -58,7 +33,6 @@ namespace oopBankomatas.Models
             Console.WriteLine($"Likutis: {account.Balance}");
         }
 
-
     public virtual Account CreateAccount(Client client)
     {
 
@@ -70,14 +44,14 @@ namespace oopBankomatas.Models
         {
 
             Console.Write("sukurk slaptiką: ");
-            string inputPassw = "abc123"; // pakeisti i ivesti
+            string inputPassw = Console.ReadLine();
 
             isCoupeledClientIdAndPassw = AutorisationCell.TryAdd(clientID, inputPassw); //turi būti vienas dict......
             if (isCoupeledClientIdAndPassw) { Console.WriteLine($"isimink slapika.....->  {inputPassw}"); }
             else { Console.WriteLine("kažkas ne OK su slapiku"); }
         }
         while (!isCoupeledClientIdAndPassw);
-        //Dictionary<string, string> accountID = new Dictionary<string, string>() {{ clientID, inputPassw }}; //turi būti vienas dict......
+
         Account newAccount = new Account(userName, userLastName, clientID);
         UpdateAllAccounts(newAccount);
             Console.WriteLine($"{newAccount.Name} - account sukurtas");
@@ -108,13 +82,12 @@ namespace oopBankomatas.Models
                     checkThisPassw = Console.ReadLine();
                 if (checkThisPassw == getPassw)
                 {
-                    Console.WriteLine("acc passw ok"); //for test only
+                    Console.WriteLine("acc passw ok"); 
                     return indicatedAcc;
                 }
                 else
                 {
-                    Console.WriteLine("acc passw wrong"); //for test only
-                                                          //return false;
+                    Console.WriteLine("acc passw wrong"); 
                     i++;
                 }
             }
@@ -136,35 +109,39 @@ namespace oopBankomatas.Models
             return AllAccounts;
         }
 
-        public string ActionManage(Account account, ref string availibleActionDescription)
+        //public string ActionManager(Account account, ref string availibleActionDescription)
+        public void ActionManager(Account account)
         {
             int choosedAction = 0;
             string check_Balance = "Patikrinti lėšų likutį"; //1
             string check_LastActions = "Peržiūrėti transakcijas (5 paskutinės"; //2
             string take_Cash = "Išimti pinigų"; //0
+            string put_Cash = "ĮNEŠTI pinigų"; //0
             string userDisconnect = "Grąžinti kortelę"; //0
-                                                        //string availibleActionDescription;
-            Console.WriteLine($"Pasirinkite veiksmą: \n 1 - {check_Balance} \n 2 -{check_LastActions} \n 3 - {take_Cash} \n 0 - {userDisconnect} \n");
+            string availibleActionDescription;
+
+            Console.WriteLine($"Pasirinkite veiksmą: \n 1 - {check_Balance} \n 2 -{check_LastActions} \n\n 3 - {take_Cash} \n 4 - {put_Cash} \n\n 0 - {userDisconnect} \n");
             choosedAction = Convert.ToInt16(Console.ReadLine());
+            Dictionary<string, double> actionDetails = new Dictionary<string, double>();
 
             switch (choosedAction)
             {
                 case 1:
                     availibleActionDescription = check_Balance;
                     Console.WriteLine("esamas likutis " +account.Balance+ "euriuku");
-                    return availibleActionDescription;
+                    //return availibleActionDescription;
                     break;
                 case 2:
                     availibleActionDescription = check_LastActions;
                     ActionReport(account);
-                    return availibleActionDescription;
+                    //return availibleActionDescription;
                     break;
                 case 3:
                     availibleActionDescription = take_Cash;
 
                     Console.Write("Įvesk sumą (įšimti -max 1000e): ");
                     double actionValue = Convert.ToDouble(Console.ReadLine());
-                    Dictionary<string, double> actionDetails = new Dictionary<string, double>();
+                   // Dictionary<string, double> actionDetails = new Dictionary<string, double>();
 
                     if (account.Balance - actionValue < 0 || actionValue > 1000)
                     {
@@ -178,14 +155,37 @@ namespace oopBankomatas.Models
                         account.Balance -= actionValue;
                         Console.WriteLine($"{availibleActionDescription} <- įvykdyta\n{actionValue} <- operacijos suma\n{account.Balance} <- ESAMAS LIKUTIS");
                     }
-                    return availibleActionDescription;
+                    break;
+                case 4:                
+                    availibleActionDescription = put_Cash;
+                    Console.Write("Įvesk sumą: ");
+                    actionValue = Convert.ToDouble(Console.ReadLine());
+                    if (actionValue < 0)
+                    {
+                        Console.WriteLine("ką čia bandai apgaut seni?....");
+                    }
+                    else
+                    {
+                        if (account.AccountActions.Count > 4) account.AccountActions.RemoveAt(0);
+                        actionDetails.Add(availibleActionDescription, actionValue);
+                        account.AccountActions.Add(actionDetails);
+                        account.Balance += actionValue;
+                        Console.WriteLine($"{availibleActionDescription} <- įvykdyta\n{actionValue} <- operacijos suma\n{account.Balance} <- ESAMAS LIKUTIS");
+                    }
+
                     break;
                 case 0:
                     availibleActionDescription = userDisconnect;
-                    return availibleActionDescription;
+                    Console.WriteLine("chaos chikitos  : )))))) ");
+                    Environment.Exit(0);
+
+                    break;
+                default:
+                    Console.WriteLine("chaos chikitos  : )))))) ");
+                    Environment.Exit(0);
                     break;
             }
-            return availibleActionDescription = "nepasirinkta";
+            //return availibleActionDescription = "nepasirinkta";
         }
 
 
