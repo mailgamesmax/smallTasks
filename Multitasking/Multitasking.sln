@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Multitasking", "Multitasking\Multitasking.csproj", "{5ECC20C3-D0A8-495A-96FC-638A7D0FE68C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFolderContent", "MyFolderContent\MyFolderContent.csproj", "{77203D1F-842F-4ABB-8E98-19096B0A2571}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ECC20C3-D0A8-495A-96FC-638A7D0FE68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECC20C3-D0A8-495A-96FC-638A7D0FE68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECC20C3-D0A8-495A-96FC-638A7D0FE68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECC20C3-D0A8-495A-96FC-638A7D0FE68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77203D1F-842F-4ABB-8E98-19096B0A2571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77203D1F-842F-4ABB-8E98-19096B0A2571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77203D1F-842F-4ABB-8E98-19096B0A2571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77203D1F-842F-4ABB-8E98-19096B0A2571}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30F90963-7E55-439C-ABC4-3E3A6F90ED06}
+	EndGlobalSection
+EndGlobal

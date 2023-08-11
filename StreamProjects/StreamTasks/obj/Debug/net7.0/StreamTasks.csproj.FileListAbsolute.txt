@@ -1,0 +1,15 @@
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\bin\Debug\net7.0\StreamTasks.exe
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\bin\Debug\net7.0\StreamTasks.deps.json
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\bin\Debug\net7.0\StreamTasks.runtimeconfig.json
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\bin\Debug\net7.0\StreamTasks.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\bin\Debug\net7.0\StreamTasks.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.csproj.AssemblyReference.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.AssemblyInfoInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.AssemblyInfo.cs
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.csproj.CoreCompileInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\refint\StreamTasks.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\StreamTasks.genruntimeconfig.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\StreamProjects\StreamTasks\obj\Debug\net7.0\ref\StreamTasks.dll

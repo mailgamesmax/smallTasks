@@ -1,0 +1,15 @@
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\bin\Debug\net7.0\Multitasking.exe
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\bin\Debug\net7.0\Multitasking.deps.json
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\bin\Debug\net7.0\Multitasking.runtimeconfig.json
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\bin\Debug\net7.0\Multitasking.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\bin\Debug\net7.0\Multitasking.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.csproj.AssemblyReference.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.AssemblyInfoInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.AssemblyInfo.cs
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.csproj.CoreCompileInputs.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\refint\Multitasking.dll
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.pdb
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\Multitasking.genruntimeconfig.cache
+C:\Users\Maksim\source\repos\OOP\folder_github\Multitasking\Multitasking\obj\Debug\net7.0\ref\Multitasking.dll

@@ -1,0 +1,4 @@
+Kaip kompiuteristai sveikina vienas kitą? "Hello World!"
+Kodėl kompiuteristas niekada nesugadina savo vakarienės? Jis naudoja "try-catch" bloką.
+Kas programuotojui yra github? Tai kaip facebook, tik su daugiau commit ir mažiau like.
+čia galėjo būti tavo juokelis.......
